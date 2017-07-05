@@ -1,10 +1,16 @@
 <%
   case type
   when 'error'
-    title = 'Server Error'
+    title = 'Server error'
     heading = "We're having some server issues"
     text = <<-HTML
 Sorry about that. Please try again in a moment, or <a href='mailto:support@loyaltylion.com'>contact us</a> if the problem persists
+    HTML
+  when 'not_found'
+    title = 'Page not found'
+    heading = 'Page not found'
+    text = <<-HTML
+We couldn't find the page you requested
     HTML
   when 'maintenance'
     title = 'Maintenance'

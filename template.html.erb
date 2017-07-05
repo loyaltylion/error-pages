@@ -1,0 +1,63 @@
+<%
+  case type
+  when 'error'
+    title = 'Server Error'
+    heading = "We're having some server issues"
+    text = <<-HTML
+Sorry about that. Please try again in a moment, or <a href='mailto:support@loyaltylion.com'>contact us</a> if the problem persists
+    HTML
+  when 'maintenance'
+    title = 'Maintenance'
+    heading = "We're performing some scheduled maintenance"
+    text = <<-HTML
+We're currently down for some scheduled maintenance. Please check back soon
+    HTML
+  end
+%>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title><%= title %> &middot; LoyaltyLion</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
+    <style>
+      body {
+        color: #fff;
+        background: #532681;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 300;
+        text-align: center;
+        height: 100%;
+      }
+      .text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      .error-code {
+        padding-top: 20px;
+        opacity: 0.4;
+      }
+      h2 {
+        font-weight: 300;
+        font-size: 32px;
+      }
+      a {
+        color: #FFF;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="text">
+      <h2><%= heading %></h2>
+      <p><%= text %></p>
+      <% if defined?(code) %>
+        <p class='error-code'>
+          status code: <%= code %>
+        </p>
+      <% end %>
+    </div>
+  </body>
+</html>

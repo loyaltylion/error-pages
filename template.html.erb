@@ -3,20 +3,32 @@
   when 'error'
     title = 'Server error'
     heading = "We're having some server issues"
-    text = <<-HTML
-Sorry about that. Please try again in a moment, or <a href='mailto:support@loyaltylion.com'>contact us</a> if the problem persists
+    text = <<~HTML
+      <p>
+        Sorry about that. Please try again in a moment,
+        or <a href='mailto:support@loyaltylion.com'>contact us</a>
+        if the problem persists
+      </p>
     HTML
   when 'not_found'
     title = 'Page not found'
     heading = 'Page not found'
-    text = <<-HTML
-We couldn't find the page you requested
+    text = <<~HTML
+      <p>
+        We couldn't find the page you requested.
+      </p>
+      <p>
+        If you were expecting to find something here, please let us know at
+        <a href='mailto:support@loyaltylion.com'>support@loyaltylion.com</a>
+      </p>
     HTML
   when 'maintenance'
     title = 'Maintenance'
     heading = "We're performing some scheduled maintenance"
-    text = <<-HTML
-We're currently down for some scheduled maintenance. Please check back soon
+    text = <<~HTML
+      <p>
+        We're currently down for some scheduled maintenance. Please check back soon
+      </p>
     HTML
   end
 %>
@@ -26,12 +38,12 @@ We're currently down for some scheduled maintenance. Please check back soon
     <meta charset="utf-8">
     <title><%= title %> &middot; LoyaltyLion</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Muli:300" rel="stylesheet">
     <style>
       body {
         color: #fff;
         background: #532681;
-        font-family: 'Roboto', sans-serif;
+        font-family: 'Muli', sans-serif;
         font-weight: 300;
         text-align: center;
         height: 100%;
@@ -58,7 +70,7 @@ We're currently down for some scheduled maintenance. Please check back soon
   <body>
     <div class="text">
       <h2><%= heading %></h2>
-      <p><%= text %></p>
+      <%= text %>
       <% if defined?(code) %>
         <p class='error-code'>
           status code: <%= code %>
